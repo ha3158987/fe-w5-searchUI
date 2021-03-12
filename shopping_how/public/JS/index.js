@@ -43,16 +43,12 @@ class Main {
 
 const UIMAKER = new UIMaker(_, REFERENCE);
 const SMALLCAROUSEL = new smallCarousel(_, REFERENCE);
-new search.SearchUI(REFERENCE.searchBox, REFERENCE.items);
+const SEARCHUI = new search.SearchUI(REFERENCE.searchBox, REFERENCE.items);
 const SLIDER = new search.Slider({
-    searchBox: REFERENCE.searchBox,
-    items: REFERENCE.items,
     window : REFERENCE.slideWindow,
     container : REFERENCE.slideItemContainer
 });
 const DROPDOWN = new search.DropDown({
-    searchBox: REFERENCE.searchBox,
-    items: REFERENCE.items,
     dropDown: REFERENCE.dropDownBox
 });
 new Main(UIMAKER, SMALLCAROUSEL, SLIDER, DROPDOWN);
