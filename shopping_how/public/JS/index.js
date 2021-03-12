@@ -15,6 +15,7 @@ const REFERENCE = {
     prevButton: _.$(".btn_prev"),
     nextButton: _.$(".btn_next"),
     searchBox: _.$(".searchbox"),
+    searchBoxInput: _.$(".searchbox__input"),
     slideWindow: _.$(".slider_window"),
     slideItemContainer: _.$(".slider_container"),
     dropDownBox: _.$(".dropdown_suggestion"),
@@ -51,6 +52,7 @@ const SLIDER = new search.Slider({
 });
 const DROPDOWN = new search.DropDown({
     searchBox: REFERENCE.searchBox,
+    searchBoxInput: REFERENCE.searchBoxInput,
     dropDown: REFERENCE.dropDownBox
 });
 new Main(UIMAKER, SMALLCAROUSEL, SLIDER, DROPDOWN);

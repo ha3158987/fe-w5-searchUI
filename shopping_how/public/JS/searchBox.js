@@ -79,16 +79,25 @@ DropDown.prototype.constructor = DropDown;
 function DropDown (refObj) {
     this._ = utill;
     SearchUI.call(this, refObj);
+    this.input = refObj.searchBoxInput;
     this.dropDown = refObj.dropDown;
 }
 
 DropDown.prototype.addClickEvent = function (dataObj) {
-    this.addEvent(this.searchBox, 'focus', this.showDropDown);
+    this.addEvent(this.searchBox, 'click', this.activateDropDown.bind(this, dataObj));
+}
+
+DropDown.prototype.activateDropDown = function (dataObj) {
+    this.input.focus();
+    console.log("focus 이벤트 발생");
+    this.fetchTop10Keywords(dataObj.URL, dataObj.section);
+    this.showDropDown();
+    this.changeColor();
 }
 
 DropDown.prototype.showDropDown = function () {
     const dropDown = this.dropDown;
-    console.log("focus 이벤트 발생")
+
 }
 
 DropDown.prototype.changeColor = function () {
