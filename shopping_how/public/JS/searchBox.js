@@ -6,6 +6,7 @@
 ! 프로토타입으로 작성한다. 생성자 함수를 만들기. 인스턴스들끼리 공유하는 메소드는 생성자가 가질 수 있게 한다.
 todo - [x] 인기쇼핑검색어 드롭다운 UI만들기
 todo - [x] prototype으로 리팩토링하기
+todo - [ ] setTimeout으로 구현한 함수들 async / await 으로 바꾸기
 todo - [ ] 검색창에 focus가 들어오면 인기쇼핑검색어 노출하기.
 todo - [ ] 검색창에 focus가 들어오면 border 빨간색으로 변경하기.
 todo - [ ] 검색어 입력시 인기쇼핑검색어 컨텐츠가 사라지게 하기.
@@ -16,9 +17,8 @@ todo - [ ] 캐시 기능 알아보기(같은 요청이 들어올 때 캐시기�
 import utill from "./utill.js";
 
 //---------------------------▶︎▶︎▶︎ Search UI: 최상위 객체 ◀︎◀︎◀︎---------------------------//
-function SearchUI(searchBox, items) {
-    this.searchBox = searchBox;
-    this.items = items;
+function SearchUI(dataObj) {
+    this.searchBox = dataObj.searchBox;
 }
 
 SearchUI.prototype.addEvent = (node, event, callback) => node.addEventListener(event, callback);
@@ -31,7 +31,6 @@ SearchUI.prototype.fetchTop10Keywords = (url, section) =>  fetch(`${url}/image?s
 //SearchUI 프로토타입 상속
 Slider.prototype = Object.create(SearchUI.prototype);
 Slider.prototype.constructor = Slider;
-// console.dir(Slider);
 
 function Slider (refObj) {
     this._ = utill;
@@ -76,20 +75,20 @@ Slider.prototype.reorganizeItems = function (parentNode) {
 //SearchUI 프로토타입 상속
 DropDown.prototype = Object.create(SearchUI.prototype);
 DropDown.prototype.constructor = DropDown;
-// console.dir(DropDown);
 
 function DropDown (refObj) {
-        this._ = utill;
-        this.dropDown = refObj.dropDown;
+    this._ = utill;
+    SearchUI.call(this, refObj);
+    this.dropDown = refObj.dropDown;
 }
 
-DropDown.prototype.addClickEvent = function () {
-        this.addEvent(this.dropDown, 'focus', this.showDropDown);
-        this.addEvent(this.dropDown, 'focus', this.changeColor);
+DropDown.prototype.addClickEvent = function (dataObj) {
+    this.addEvent(this.searchBox, 'focus', this.showDropDown);
 }
 
 DropDown.prototype.showDropDown = function () {
-
+    const dropDown = this.dropDown;
+    console.log("focus 이벤트 발생")
 }
 
 DropDown.prototype.changeColor = function () {

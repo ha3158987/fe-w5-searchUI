@@ -18,7 +18,6 @@ const REFERENCE = {
     slideWindow: _.$(".slider_window"),
     slideItemContainer: _.$(".slider_container"),
     dropDownBox: _.$(".dropdown_suggestion"),
-    sliderItems: _.$all(".slider_item"),
     slide: _.$(".slide"),
     cells: _.$all(".cell-bottom"),
     items: _.$all(".item")
@@ -43,12 +42,15 @@ class Main {
 
 const UIMAKER = new UIMaker(_, REFERENCE);
 const SMALLCAROUSEL = new smallCarousel(_, REFERENCE);
-const SEARCHUI = new search.SearchUI(REFERENCE.searchBox, REFERENCE.items);
+const SEARCHUI = new search.SearchUI({
+    searchBox: REFERENCE.searchBox,
+});
 const SLIDER = new search.Slider({
     window : REFERENCE.slideWindow,
     container : REFERENCE.slideItemContainer
 });
 const DROPDOWN = new search.DropDown({
+    searchBox: REFERENCE.searchBox,
     dropDown: REFERENCE.dropDownBox
 });
 new Main(UIMAKER, SMALLCAROUSEL, SLIDER, DROPDOWN);
