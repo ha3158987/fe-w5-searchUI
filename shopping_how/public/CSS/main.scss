@@ -181,6 +181,7 @@ header {
       width: 580px;
       height: 100%;
       border: none;
+      outline: none; //input 태그의 아웃라인을 없앤다.
     }
 
     .slider_window {
